@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="AccountingSystem.Views.GroupScheduleUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AccountingSystem.Views"
+             mc:Ignorable="d" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+     
+        </ResourceDictionary>
+    </UserControl.Resources>
+   
+        <Grid Width="1000" Height="600">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <materialDesign:ColorZone Background="{StaticResource MaterialDesignDarkBackground}" 
+                  >
+                <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatAccentButton}" Command="{Binding CloseCommand}">
+                    <materialDesign:PackIcon Kind="Close" Foreground="{StaticResource MaterialDesignDarkForeground}"/>
+                </Button>
+            </materialDesign:ColorZone>
+
+
+            <WrapPanel Grid.Row="1" VerticalAlignment="Center" Margin="15,0,0,0">
+                <TextBlock Text="Группа: " VerticalAlignment="Center"/>
+                <ComboBox VerticalAlignment="Center" Margin="15,0,0,0" IsEditable="True"
+                      ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}"
+                          Focusable="{Binding IsClosed}" Visibility="{Binding IsClosed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <TextBlock Text="День недели:" VerticalAlignment="Center" 
+                       Margin="30,0,0,0"/>
+                <ComboBox Margin="15,0,0,0" ItemsSource="{Binding Days}"
+                          
+                      SelectedIndex="{Binding SelectedDay}" Visibility="{Binding IsClosed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+
+                <Button Margin="30,0,0,0" Content="Добавить пару" Foreground="{StaticResource MaterialDesignDarkForeground}"
+                    Visibility="{Binding EditButtonVisibility}"
+                        Command="{Binding OpenAddLessonCommand}"
+                        IsEnabled="{Binding IsClosed}"
+                        CommandParameter="{Binding SelectedGroup}"
+                    />
+            </WrapPanel>
+
+            <Separator Grid.Row="1" VerticalAlignment="Bottom"/>
+
+        <materialDesign:DialogHost Identifier="scheduleHost" Grid.Row="2" x:Name="host">
+            <StackPanel  Grid.IsSharedSizeScope="True" VerticalAlignment="Top">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" 
+              >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="NumberLesson"/>
+                        <ColumnDefinition  Width="Auto" SharedSizeGroup="GroupName"/>
+                        <ColumnDefinition Width="Auto"  SharedSizeGroup="SubjectName"/>
+                        <ColumnDefinition Width="Auto"  SharedSizeGroup="Room"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="№" Margin="0,0,30,0"  Foreground="Gray"/>
+                    <TextBlock Grid.Column="1" Text="Предмет" Margin="0,0,30,0"   Foreground="Gray"/>
+                    <TextBlock Grid.Column="2" Text="Преподователь" Margin="0,0,30,0"   Foreground="Gray"/>
+                    <TextBlock Grid.Column="3" Text="Кабинет" Margin="0,0,30,0"  Foreground="Gray"/>
+                </Grid>
+
+                <Popup IsOpen="{Binding IsPopupOpen}" AllowsTransparency="True"
+                       PopupAnimation="Slide" Placement="Mouse" StaysOpen="False"
+                       Visibility="{Binding EditButtonVisibility}">
+                    <Menu>
+                        <MenuItem Header="Редактировать" Command="{Binding EditLessonCommand}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteScheduleCommand}"
+                                  CommandParameter="{Binding SelectedScheduleRecord}"/>
+                    </Menu>
+                </Popup>
+                
+                <ListBox ItemsSource="{Binding ScheduleDays}" Height="468"
+                  HorizontalAlignment="Center" 
+           >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Day, Converter={StaticResource dayOfWeekConverter}}" HorizontalAlignment="Center" Margin="0,10,0,10"
+                                       FontWeight="Normal"/>
+                                <Separator Margin="10,0,10,10"/>
+                                <ListBox ItemsSource="{Binding Lessons}"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                         SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=UserControl},
+                                    Path=ViewModel.SelectedScheduleRecord}">
+
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                   
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid TextElement.FontSize="14">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition  Width="Auto" SharedSizeGroup="NumberLesson"/>
+                                                    <ColumnDefinition  Width="Auto" SharedSizeGroup="GroupName"/>
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="SubjectName"/>
+                                                    <ColumnDefinition Width="Auto"  SharedSizeGroup="Room"/>
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <TextBlock Text="{Binding Path=LessonNumber}"
+                                                          Grid.Column="0"
+                                                       Margin="0,0,30,0"/>
+
+                                                <TextBlock  Text="{Binding Path=Фио_преподователя}" 
+                                                           Margin="0,0,30,0"  Grid.Column="2"/>
+
+                                                <TextBlock  Text="{Binding Path=Предмет}" 
+                                                           Margin="0,0,30,0"  Grid.Column="1"/>
+
+                                                <TextBlock  Text="{Binding Path=HallNumber}"
+                                                           Margin="0,0,30,0"  Grid.Column="3"/>
+
+
+                                                <Separator Grid.ColumnSpan="4" VerticalAlignment="Bottom" 
+                                                       Margin="10,20,10,0" Style="{StaticResource MaterialDesignDarkSeparator}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </materialDesign:DialogHost>
+    </Grid>
+   
+</UserControl>

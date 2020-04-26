@@ -1,0 +1,50 @@
+﻿<Application x:Class="AccountingSystem.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AccountingSystem"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:AccountingSystem.Converters"
+          >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="#85a392" SecondaryColor="#f5b971" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <SolidColorBrush x:Key="PrimaryColor" Color="#511845"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#f5b971"/>
+            <SolidColorBrush x:Key="MidColor" Color="#900c3f"/>
+
+            <converters:DayOfWeekConverter x:Key="dayOfWeekConverter"/>
+
+
+            <Style x:Key="WinStyle" TargetType="Window">
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="FontSize" Value="16"/>
+             
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+            </Style>
+
+            <Style x:Key="MenuSeparator" TargetType="Separator" BasedOn="{StaticResource MaterialDesignLightSeparator}">
+                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="90"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}"/>
+            </Style>
+
+
+
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

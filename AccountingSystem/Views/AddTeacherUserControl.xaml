@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="AccountingSystem.Views.AddTeacherUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AccountingSystem.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+                     mc:Ignorable="d" >
+    <Grid Width="700" Height="600">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+
+
+        <TextBlock Grid.Row="1" Text="Имя" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.FirstName}"/>
+
+        <TextBlock Grid.Row="2" Text="Фамилия" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.LastName}"/>
+
+        <TextBlock Grid.Row="3" Text="Отчество" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.Patronymic}"/>
+
+        <TextBlock Grid.Row="4" Text="Специализация" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.Spezialisation}"/>
+
+
+        <TextBlock Grid.Row="5" Text="Университет" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.University}"/>
+
+
+        <TextBlock Grid.Row="6" Text="Дата рождения" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <DatePicker Grid.Row="6" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 SelectedDate="{Binding TeacherInfo.DateBirth}"/>
+        
+        <TextBlock Grid.Row="7" Text="Телефон" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding TeacherInfo.Phone}"/>
+
+        <TextBlock Grid.Row="8" Text="Кабинет" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50" 
+                 Text="{Binding Hall}"
+                />
+
+
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Отделение" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="3" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 ItemsSource="{Binding Corpuses}"
+                  SelectedItem="{Binding Corpus}"
+                  DisplayMemberPath="CorpusName"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Образование" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox Grid.Row="2" Grid.Column="3" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 ItemsSource="{Binding Educations}"
+                  SelectedItem="{Binding Education}"
+                  DisplayMemberPath="EducationName"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="Логин" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="3" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding User.Login}"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="Пароль" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="3" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                 Text="{Binding User.Password}"/>
+
+
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="Роль" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox Grid.Row="6" Grid.Column="3" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                  ItemsSource="{Binding Roles}"
+                  SelectedItem="{Binding Role}"
+                  DisplayMemberPath="RoleName"/>
+
+
+        <WrapPanel Grid.Row="9" Grid.ColumnSpan="4" Grid.RowSpan="2"  HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <Button Content="Потвердить"  Margin="0,0,30,0"
+                Foreground="{StaticResource MaterialDesignDarkForeground}"
+                Command="{Binding AcceptCommand}"/>
+            <Button Content="Отменить" 
+                Background="{StaticResource MaterialDesignLightBackground}"
+                Foreground="{StaticResource MaterialDesignLightForeground}"
+                Command="{Binding CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

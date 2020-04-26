@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b22b91fce6e547e0aea330720cd2cf6e" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AccountingSystemModel.Address" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.City" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Corpus" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.District" Width="1.5" PointX="1.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Education" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Group" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.LessonNumberInfo" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Role" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.ScheduleRecord" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Spezialisation" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Street" Width="1.5" PointX="1.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Student" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.StudentState" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.StudentStatu" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.StudentStatusOnLesson" Width="1.5" PointX="10.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.Subject" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.TeacherInfo" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.User" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.CorpusView" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.GroupView" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.ScheduleView" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.StudentStatusView" Width="3.375" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.StudentView" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.SubjectView" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingSystemModel.TeacherView" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Address_City" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Address_District" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Address_Street" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Corpus_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Student_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Group_Corpus" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_TeacherInfo_Corpus" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_TeacherInfo_Education" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Group_Spezialisation" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_ScheduleRecord_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Student_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_ScheduleRecord_LessonNumberInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_ScheduleRecord_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_ScheduleRecord_TeacherInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_StudentStatusOnLesson_ScheduleRecord" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Subject_Spezialisation1" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Student_StudentState" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_Student_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_StudentStatusOnLesson_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_StudentStatusOnLesson_StudentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingSystemModel.FK_TeacherInfo_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

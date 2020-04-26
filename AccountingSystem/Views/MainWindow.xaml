@@ -1,0 +1,94 @@
+﻿<views:WindowBase x:Class="AccountingSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        x:TypeArguments="viewModels:MainViewModel"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:AccountingSystem.Views"
+        xmlns:viewModels="clr-namespace:AccountingSystem.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AccountingSystem.Views"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                  TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Главное окно" Height="600" Width="1200"
+        DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}">
+
+ 
+        <Window.Resources>
+            <ResourceDictionary>
+                   <sys:Boolean x:Key="bFalse">False</sys:Boolean>
+            <sys:Boolean x:Key="bTrue">True</sys:Boolean>
+        </ResourceDictionary>
+        </Window.Resources>
+  
+    
+    <materialDesign:DialogHost>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="373*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Background="{StaticResource MaterialDesignDarkBackground}" MouseLeftButtonDown="OnDrag"
+                   LastChildFill="False">
+                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFlatAccentButton}" Command="{Binding CloseCommand}">
+                    <materialDesign:PackIcon Kind="Close" Foreground="{StaticResource MaterialDesignDarkForeground}"/>
+                </Button>
+            </DockPanel>
+
+            <Menu Grid.Row="1" IsMainMenu="True" Style="{StaticResource MaterialDesignMenu}"
+              VerticalAlignment="Center">
+                <Separator Width="20"  Style="{StaticResource MenuSeparator}"/>
+                <MenuItem Header="Журнал" Command="{Binding OpenJournalCommand}"/>
+                <Separator Width="20"  Style="{StaticResource MenuSeparator}"/>
+                <MenuItem Header="Группы" Visibility="{Binding TeacherVisibility}">
+                    <MenuItem Header="Список групп" Command="{Binding OpenGroupsCommand}"
+                              CommandParameter="{Binding IsAdmin}"/>
+                    <MenuItem Header="Добавить группу" Command="{Binding OpenAddGroupCommand}"
+                              Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </MenuItem>
+                <Separator Width="20" Style="{StaticResource MenuSeparator}" Visibility="{Binding TeacherVisibility}" />
+                <MenuItem Header="Студенты" Command="{Binding OpenStudentsCommand}" Visibility="{Binding TeacherVisibility}"
+                          CommandParameter="{Binding IsAdmin}">
+              
+                 
+                </MenuItem>
+
+                <Separator Width="20" Style="{StaticResource MenuSeparator}" Visibility="{Binding TeacherVisibility}"/>
+                <MenuItem Header="Расписание">
+                    <MenuItem Header="Расписание групп" Command="{Binding OpenGroupScheduleCommand}"
+                            CommandParameter="{StaticResource bFalse}"/>
+                    <MenuItem Header="Расписание учителя" Command="{Binding OpenScheduleCommand}"/>
+                    <MenuItem Header="Редактировать расписание"
+                             Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Command="{Binding OpenGroupScheduleCommand}"
+                              CommandParameter="{StaticResource bTrue}"/>
+                </MenuItem>
+                <Separator  Width="20" Style="{StaticResource MenuSeparator}" />
+                <MenuItem Header="Преподователи" Visibility="{Binding TeacherVisibility}"
+                          Command="{Binding OpenTeachersCommand}"
+                          CommandParameter="{Binding IsAdmin}"/>
+                <Separator  Width="20" Style="{StaticResource MenuSeparator}" Visibility="{Binding TeacherVisibility}"/>
+                <MenuItem Header="Отделения"
+                          Command="{Binding OpenCorpusesCommand}"
+                          CommandParameter="{Binding IsAdmin}"/>
+                <Separator  Width="20" Style="{StaticResource MenuSeparator}" />
+
+            </Menu>
+
+            <Separator Grid.Row="1" VerticalAlignment="Bottom"/>
+
+            <Frame x:Name="mainFrame" Grid.Row="2"/>
+        </Grid>
+    </materialDesign:DialogHost>
+
+</views:WindowBase>

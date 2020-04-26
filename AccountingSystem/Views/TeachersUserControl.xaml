@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="AccountingSystem.Views.TeachersUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AccountingSystem.Views"
+             mc:Ignorable="d" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Width="1000" Height="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+
+
+        <materialDesign:ColorZone Background="{StaticResource MaterialDesignDarkBackground}" 
+                  >
+            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatAccentButton}" Command="{Binding CloseCommand}">
+                <materialDesign:PackIcon Kind="Close" Foreground="{StaticResource MaterialDesignDarkForeground}"/>
+            </Button>
+        </materialDesign:ColorZone>
+
+
+
+
+        <WrapPanel Grid.Row="1" VerticalAlignment="Center" Margin="15,0,0,0">
+
+            <TextBlock Text="Отделение: " VerticalAlignment="Center"/>
+            <ComboBox MinWidth="100" Margin="10,0,30,0"
+                     ItemsSource="{Binding Corpuses}"
+                     SelectedItem="{Binding SelectedCorpus}"
+                    />
+
+            <TextBlock Text="ФИО: " VerticalAlignment="Center"/>
+            <TextBox MinWidth="100" Margin="10,0,30,0"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Кабинет: " VerticalAlignment="Center"/>
+            <TextBox MinWidth="100" Margin="10,0,0,0"
+                     Text="{Binding HallNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Margin="30,0,0,0" Content="Добавить преподователя" Foreground="{StaticResource MaterialDesignDarkForeground}"
+                    Visibility="{Binding IsToEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding OpenAddTeacher}"
+                        IsEnabled="{Binding IsClosed}"
+                        CommandParameter="{x:Null}"
+                    
+                    />
+        </WrapPanel>
+
+        <Separator Grid.Row="1" VerticalAlignment="Bottom"/>
+
+
+        <Popup IsOpen="{Binding IsPopup}" AllowsTransparency="True"
+                       PopupAnimation="Slide" Placement="Mouse" StaysOpen="False"
+                     Visibility="{Binding IsToEdit, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Menu>
+                <MenuItem Header="Редактировать" Command="{Binding OpenAddTeacher}"
+                          CommandParameter="{Binding SelectedTeacher}"/>
+                <MenuItem Header="Удалить" Command="{Binding DeleteCommand}"
+                          CommandParameter="{Binding SelectedTeacher}"/>
+            </Menu>
+        </Popup>
+
+
+
+        <materialDesign:DialogHost Identifier="teacherHost" Grid.Row="2" x:Name="host"
+                                   >
+            <ListView ItemsSource="{Binding TeacherViews}" HorizontalAlignment="Center"
+                      FontSize="14" SelectedItem="{Binding SelectedTeacher}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Отделение" DisplayMemberBinding="{Binding Отделение}"/>
+                        <GridViewColumn Header="Фио" DisplayMemberBinding="{Binding Фио}"/>
+                        <GridViewColumn Header="Образование" DisplayMemberBinding="{Binding Образование}"/>
+                        <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Специальность}"/>
+                        <GridViewColumn Header="Обр. Учереждение" DisplayMemberBinding="{Binding Университет}"/>
+                        <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding Дата_рождения, StringFormat='{}{0:dddd, dd MMMM yyyy}'}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Служебный_телеон}"/>
+                        <GridViewColumn Header="Кабинет" DisplayMemberBinding="{Binding Кабинет}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:DialogHost>
+    </Grid>
+
+</UserControl>
