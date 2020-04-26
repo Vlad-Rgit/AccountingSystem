@@ -47,6 +47,7 @@ namespace AccountingSystem.ViewModels
                 if(groupView == null)
                 {
                     Group = new Group();
+                    Group.DateEntrance = DateTime.Now;
                     Spezialisation = Spezialisations[0];
                     Corpus = Corpuses[0];
                 }

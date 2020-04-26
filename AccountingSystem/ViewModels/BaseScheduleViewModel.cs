@@ -37,8 +37,10 @@ namespace AccountingSystem.ViewModels
             get => _isPopupOpen;
             set
             {
-                _isPopupOpen = value;
-                OnPropertyChanged();
+              
+                    _isPopupOpen = value;
+                    OnPropertyChanged();
+                
             }
         }
 

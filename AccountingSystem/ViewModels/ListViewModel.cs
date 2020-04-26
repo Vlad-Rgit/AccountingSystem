@@ -17,7 +17,14 @@ namespace AccountingSystem.ViewModels
 		public bool IsPopup
 		{
 			get { return _isPopup; }
-			set { _isPopup = value; OnPropertyChanged(); }
+			set 
+			{
+				if (IsToEdit)
+				{
+					_isPopup = value;
+					OnPropertyChanged();
+				}
+			}
 		}
 
 

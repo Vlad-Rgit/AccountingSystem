@@ -63,11 +63,13 @@
 
         <TextBlock Grid.Row="6" Text="Дата рождения" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <DatePicker Grid.Row="6" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
+                    
                  SelectedDate="{Binding TeacherInfo.DateBirth}"/>
         
         <TextBlock Grid.Row="7" Text="Телефон" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBox Grid.Row="7" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
-                 Text="{Binding TeacherInfo.Phone}"/>
+                 Text="{Binding TeacherInfo.Phone}"
+                 PreviewKeyDown="TextBox_PreviewKeyDown"/>
 
         <TextBlock Grid.Row="8" Text="Кабинет" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBox Grid.Row="8" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50" 

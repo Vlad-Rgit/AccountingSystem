@@ -69,7 +69,7 @@
 
         <Popup IsOpen="{Binding IsPopup}" AllowsTransparency="True"
                        PopupAnimation="Slide" Placement="Mouse" StaysOpen="False"
-                     Visibility="{Binding IsToEdit, Converter={StaticResource BooleanToVisibilityConverter}}">
+                   >
             <Menu>
                 <MenuItem Header="Редактировать" Command="{Binding OpenAddTeacher}"
                           CommandParameter="{Binding SelectedTeacher}"/>

@@ -29,5 +29,11 @@ namespace AccountingSystem.Views
             ViewModel = new AddStudentViewModel(student);
             InitializeComponent();
         }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
     }
 }

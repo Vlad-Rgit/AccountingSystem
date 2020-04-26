@@ -71,7 +71,8 @@
 
         <TextBlock Grid.Row="8" Text="Телефон" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBox Grid.Row="8" Grid.Column="1" Margin="10" HorizontalAlignment="Left" MinWidth="50"
-                 Text="{Binding Student.Phone}"/>
+                 Text="{Binding Student.Phone}"
+                 PreviewKeyDown="TextBox_PreviewKeyDown"/>
 
     
 

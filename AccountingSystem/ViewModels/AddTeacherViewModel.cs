@@ -48,6 +48,7 @@ namespace AccountingSystem.ViewModels
                 if (teacher == null)
                 {
                     TeacherInfo = new TeacherInfo();
+                    TeacherInfo.DateBirth = new DateTime(1990, 2, 2);
                     Education = Educations[0];
                     Corpus = Corpuses[0];
                     User = new User();

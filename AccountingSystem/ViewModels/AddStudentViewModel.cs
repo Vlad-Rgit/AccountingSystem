@@ -35,7 +35,7 @@ namespace AccountingSystem.ViewModels
 
         //Команда потвердить
         public RelayCommand AcceptCommand { get; }
-
+        public RelayCommand CancelCommand { get; }
         public AddStudentViewModel(StudentView student)
         {
             using (var repo = new Repository())
@@ -48,7 +48,7 @@ namespace AccountingSystem.ViewModels
                 if (student == null)
                 {
                     Student = new Student();
-
+                    Student.DateBirth = new DateTime(1990, 2, 2);
                     Address = new Address();
                     City = new City();
                     Street = new Street();
@@ -80,6 +80,7 @@ namespace AccountingSystem.ViewModels
             }
             
             AcceptCommand = new RelayCommand(Accept);
+            CancelCommand = new RelayCommand(() => DialogHost.CloseDialogCommand.Execute(this, null));
         }
 
 
